@@ -9,9 +9,9 @@ export default function TripsPage() {
 
   return (
     <div className="flex flex-col h-full">
-      <header className="px-4 pt-12 pb-4 bg-white border-b border-gray-100 flex items-center justify-between">
+      <header className="px-4 pt-12 pb-4 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Trips</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Trips</h1>
           <p className="text-sm text-gray-400 mt-0.5">{trips.length} planned</p>
         </div>
         <Link
@@ -43,7 +43,7 @@ function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center px-8">
       <div className="text-5xl mb-4">✈️</div>
-      <p className="text-gray-500">No trips yet. Tap + to plan one!</p>
+      <p className="text-gray-500 dark:text-gray-400">No trips yet. Tap + to plan one!</p>
     </div>
   )
 }
@@ -52,7 +52,7 @@ function LoadingSkeleton() {
   return (
     <>
       {[1,2].map(i => (
-        <div key={i} className="h-20 bg-white rounded-2xl border border-gray-100 animate-pulse" />
+        <div key={i} className="h-20 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 animate-pulse" />
       ))}
     </>
   )

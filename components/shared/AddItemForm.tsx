@@ -22,13 +22,13 @@ export default function AddItemForm({ onAdd, placeholder = 'Add item…' }: AddI
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-2 px-4 py-3 bg-white border-t border-gray-100">
+    <form onSubmit={handleSubmit} className="flex items-center gap-2 px-4 py-3 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
       <input
         type="text"
         value={text}
         onChange={e => setText(e.target.value)}
         placeholder={placeholder}
-        className="flex-1 text-base bg-transparent focus:outline-none placeholder-gray-400"
+        className="flex-1 text-base bg-transparent focus:outline-none placeholder-gray-400 dark:placeholder-gray-600 text-gray-900 dark:text-white"
       />
       <button
         type="submit"

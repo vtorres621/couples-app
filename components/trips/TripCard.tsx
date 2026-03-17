@@ -51,16 +51,16 @@ export default function TripCard({ trip, onDelete, featured = false }: TripCardP
   }
 
   return (
-    <div className="flex items-center bg-white rounded-2xl px-4 py-3.5 shadow-sm border border-gray-100">
+    <div className="flex items-center bg-white dark:bg-gray-900 rounded-2xl px-4 py-3.5 shadow-sm border border-gray-100 dark:border-gray-800">
       <div className="flex-1">
-        <div className="font-semibold text-gray-900">{trip.name}</div>
+        <div className="font-semibold text-gray-900 dark:text-white">{trip.name}</div>
         {trip.destination && (
           <div className="text-sm text-gray-400">{trip.destination}</div>
         )}
         <div className="text-xs text-gray-400 mt-0.5">{formatDate(trip.trip_date)}</div>
       </div>
       <div className="text-right mr-3">
-        <div className={`text-xl font-bold tabular-nums ${isPast ? 'text-gray-300' : 'text-rose-500'}`}>
+        <div className={`text-xl font-bold tabular-nums ${isPast ? 'text-gray-300 dark:text-gray-600' : 'text-rose-500'}`}>
           {isPast ? 'Past' : isToday ? '🎉' : days}
         </div>
         {!isPast && !isToday && (
@@ -70,7 +70,7 @@ export default function TripCard({ trip, onDelete, featured = false }: TripCardP
       {onDelete && (
         <button
           onClick={() => onDelete(trip.id)}
-          className="text-gray-200 active:text-red-400 p-1"
+          className="text-gray-200 dark:text-gray-700 active:text-red-400 p-1"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" strokeLinecap="round" />

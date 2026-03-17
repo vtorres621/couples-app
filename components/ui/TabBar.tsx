@@ -14,7 +14,7 @@ export default function TabBar() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-bottom z-50">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-bottom z-50">
       <div className="flex">
         {tabs.map(({ href, label, icon: Icon }) => {
           const active = pathname === href || (href !== '/home' && pathname.startsWith(href))
@@ -23,7 +23,7 @@ export default function TabBar() {
               key={href}
               href={href}
               className={`flex-1 flex flex-col items-center gap-1 py-2 text-xs font-medium transition-colors ${
-                active ? 'text-rose-500' : 'text-gray-400'
+                active ? 'text-rose-500' : 'text-gray-400 dark:text-gray-500'
               }`}
             >
               <Icon active={active} />

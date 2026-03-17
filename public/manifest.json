@@ -1,7 +1,7 @@
 {
-  "name": "Our App",
-  "short_name": "Our App",
-  "description": "Just the two of us",
+  "name": "Planning App",
+  "short_name": "Planning",
+  "description": "Planning App",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f9fafb",
