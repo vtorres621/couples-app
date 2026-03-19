@@ -8,6 +8,7 @@ const tabs = [
   { href: '/tasks', label: 'Tasks', icon: TasksIcon },
   { href: '/groceries', label: 'Groceries', icon: GroceriesIcon },
   { href: '/trips', label: 'Trips', icon: TripsIcon },
+  { href: '/calendar', label: 'Calendar', icon: CalendarIcon },
 ]
 
 export default function TabBar() {
@@ -69,6 +70,26 @@ function TripsIcon({ active }: { active: boolean }) {
     <svg width="24" height="24" viewBox="0 0 24 24" fill={active ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.8">
       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
       <circle cx="12" cy="9" r="2.5" fill={active ? 'white' : 'currentColor'} stroke="none" />
+    </svg>
+  )
+}
+
+function CalendarIcon({ active }: { active: boolean }) {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <rect x="3" y="4" width="18" height="18" rx="2" fill={active ? 'currentColor' : 'none'} />
+      <path d="M16 2v4M8 2v4M3 10h18" strokeLinecap="round" stroke={active ? 'white' : 'currentColor'} />
+      {active ? (
+        <>
+          <rect x="7" y="13" width="3" height="3" rx="0.5" fill="white" stroke="none" />
+          <rect x="14" y="13" width="3" height="3" rx="0.5" fill="white" stroke="none" />
+        </>
+      ) : (
+        <>
+          <rect x="7" y="13" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
+          <rect x="14" y="13" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
+        </>
+      )}
     </svg>
   )
 }

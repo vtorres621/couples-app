@@ -2,12 +2,12 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useTrips } from '@/hooks/useTrips'
+import { useCalendar } from '@/hooks/useCalendar'
 
-export default function NewTripPage() {
+export default function NewEventPage() {
   const router = useRouter()
-  const { addTrip } = useTrips()
-  const [form, setForm] = useState({ name: '', destination: '', trip_date: '', end_date: '', notes: '' })
+  const { addEvent } = useCalendar()
+  const [form, setForm] = useState({ title: '', event_date: '', event_time: '', notes: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -17,13 +17,12 @@ export default function NewTripPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!form.name || !form.trip_date) return
+    if (!form.title || !form.event_date) return
     setLoading(true)
-    const err = await addTrip({
-      name: form.name,
-      destination: form.destination || undefined,
-      trip_date: form.trip_date,
-      end_date: form.end_date || undefined,
+    const err = await addEvent({
+      title: form.title,
+      event_date: form.event_date,
+      event_time: form.event_time || undefined,
       notes: form.notes || undefined,
     })
     if (err) {
@@ -31,7 +30,7 @@ export default function NewTripPage() {
       setLoading(false)
       return
     }
-    router.push('/trips')
+    router.push('/calendar')
   }
 
   return (
@@ -42,45 +41,35 @@ export default function NewTripPage() {
             <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900 dark:text-white">New Trip</h1>
+        <h1 className="text-xl font-bold text-gray-900 dark:text-white">New Event</h1>
       </header>
 
       <form onSubmit={handleSubmit} className="px-4 py-6 space-y-4">
         <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden divide-y divide-gray-100 dark:divide-gray-800">
-          <Field label="Trip name *">
+          <Field label="Title *">
             <input
               type="text"
-              value={form.name}
-              onChange={e => set('name', e.target.value)}
+              value={form.title}
+              onChange={e => set('title', e.target.value)}
               required
-              placeholder="e.g. Weekend in Barcelona"
+              placeholder="e.g. Dinner at La Paloma"
               className="flex-1 text-base bg-transparent focus:outline-none placeholder-gray-400 dark:placeholder-gray-600 text-gray-900 dark:text-white"
             />
           </Field>
-          <Field label="Destination">
-            <input
-              type="text"
-              value={form.destination}
-              onChange={e => set('destination', e.target.value)}
-              placeholder="e.g. Barcelona, Spain"
-              className="flex-1 text-base bg-transparent focus:outline-none placeholder-gray-400 dark:placeholder-gray-600 text-gray-900 dark:text-white"
-            />
-          </Field>
-          <Field label="Start date *">
+          <Field label="Date *">
             <input
               type="date"
-              value={form.trip_date}
-              onChange={e => set('trip_date', e.target.value)}
+              value={form.event_date}
+              onChange={e => set('event_date', e.target.value)}
               required
               className="flex-1 text-base bg-transparent focus:outline-none text-gray-800 dark:text-white"
             />
           </Field>
-          <Field label="End date">
+          <Field label="Time">
             <input
-              type="date"
-              value={form.end_date}
-              onChange={e => set('end_date', e.target.value)}
-              min={form.trip_date || undefined}
+              type="time"
+              value={form.event_time}
+              onChange={e => set('event_time', e.target.value)}
               className="flex-1 text-base bg-transparent focus:outline-none text-gray-800 dark:text-white"
             />
           </Field>
@@ -99,10 +88,10 @@ export default function NewTripPage() {
 
         <button
           type="submit"
-          disabled={loading || !form.name || !form.trip_date}
+          disabled={loading || !form.title || !form.event_date}
           className="w-full bg-rose-500 text-white font-semibold rounded-2xl py-4 text-base disabled:opacity-40 active:bg-rose-600"
         >
-          {loading ? 'Saving…' : 'Save trip'}
+          {loading ? 'Saving…' : 'Save event'}
         </button>
       </form>
     </div>

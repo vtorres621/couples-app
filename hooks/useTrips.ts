@@ -22,12 +22,13 @@ export function useTrips() {
     fetchTrips()
   }, [fetchTrips])
 
-  async function addTrip(trip: { name: string; destination?: string; trip_date: string; notes?: string }) {
+  async function addTrip(trip: { name: string; destination?: string; trip_date: string; end_date?: string; notes?: string }) {
     const { data: { user } } = await supabase.auth.getUser()
     const { error } = await supabase.from('trips').insert({
       name: trip.name,
       destination: trip.destination ?? null,
       trip_date: trip.trip_date,
+      end_date: trip.end_date ?? null,
       notes: trip.notes ?? null,
       created_by: user?.id ?? null,
     })

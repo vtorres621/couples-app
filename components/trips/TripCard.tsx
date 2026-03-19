@@ -43,7 +43,11 @@ export default function TripCard({ trip, onDelete, featured = false }: TripCardP
           </div>
         </div>
         <div className="mt-3 pt-3 border-t border-rose-400 flex justify-between text-sm">
-          <span className="text-rose-200">{formatDate(trip.trip_date)}</span>
+          <span className="text-rose-200">
+            {trip.end_date
+              ? `${formatDate(trip.trip_date)} – ${formatDate(trip.end_date)}`
+              : formatDate(trip.trip_date)}
+          </span>
           <span className="text-white font-semibold">{countdown}</span>
         </div>
       </div>
@@ -57,7 +61,11 @@ export default function TripCard({ trip, onDelete, featured = false }: TripCardP
         {trip.destination && (
           <div className="text-sm text-gray-400">{trip.destination}</div>
         )}
-        <div className="text-xs text-gray-400 mt-0.5">{formatDate(trip.trip_date)}</div>
+        <div className="text-xs text-gray-400 mt-0.5">
+          {trip.end_date
+            ? `${formatDate(trip.trip_date)} – ${formatDate(trip.end_date)}`
+            : formatDate(trip.trip_date)}
+        </div>
       </div>
       <div className="text-right mr-3">
         <div className={`text-xl font-bold tabular-nums ${isPast ? 'text-gray-300 dark:text-gray-600' : 'text-rose-500'}`}>

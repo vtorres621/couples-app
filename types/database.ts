@@ -33,6 +33,30 @@ export type Database = {
         }
         Relationships: []
       }
+      grocery_sections: {
+        Row: {
+          id: string
+          name: string
+          sort_order: number
+          created_by: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          sort_order?: number
+          created_by?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          sort_order?: number
+          created_by?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
       grocery_items: {
         Row: {
           id: string
@@ -42,6 +66,7 @@ export type Database = {
           checked_at: string | null
           created_by: string | null
           created_at: string
+          section_id: string | null
         }
         Insert: {
           id?: string
@@ -51,6 +76,7 @@ export type Database = {
           checked_at?: string | null
           created_by?: string | null
           created_at?: string
+          section_id?: string | null
         }
         Update: {
           id?: string
@@ -60,6 +86,7 @@ export type Database = {
           checked_at?: string | null
           created_by?: string | null
           created_at?: string
+          section_id?: string | null
         }
         Relationships: []
       }
@@ -69,6 +96,7 @@ export type Database = {
           name: string
           destination: string | null
           trip_date: string
+          end_date: string | null
           notes: string | null
           created_by: string | null
           created_at: string
@@ -78,6 +106,7 @@ export type Database = {
           name: string
           destination?: string | null
           trip_date: string
+          end_date?: string | null
           notes?: string | null
           created_by?: string | null
           created_at?: string
@@ -87,6 +116,37 @@ export type Database = {
           name?: string
           destination?: string | null
           trip_date?: string
+          end_date?: string | null
+          notes?: string | null
+          created_by?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
+      calendar_events: {
+        Row: {
+          id: string
+          title: string
+          event_date: string
+          event_time: string | null
+          notes: string | null
+          created_by: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          event_date: string
+          event_time?: string | null
+          notes?: string | null
+          created_by?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          title?: string
+          event_date?: string
+          event_time?: string | null
           notes?: string | null
           created_by?: string | null
           created_at?: string
@@ -103,5 +163,7 @@ export type Database = {
 } & { PostgrestVersion: "12" }
 
 export type Task = Database['public']['Tables']['tasks']['Row']
+export type GrocerySection = Database['public']['Tables']['grocery_sections']['Row']
 export type GroceryItem = Database['public']['Tables']['grocery_items']['Row']
 export type Trip = Database['public']['Tables']['trips']['Row']
+export type CalendarEvent = Database['public']['Tables']['calendar_events']['Row']
